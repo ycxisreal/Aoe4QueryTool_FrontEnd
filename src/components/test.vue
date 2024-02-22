@@ -1,5 +1,39 @@
 <template>
-    <div>test</div>
+    <el-container>
+        <el-aside class="aside">
+            test
+        </el-aside>
+        <el-container>
+            <el-main>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+                <div>balabala</div>
+
+            </el-main>
+        </el-container>
+
+    </el-container>
 </template>
 
 <script lang='ts'>
@@ -8,5 +42,12 @@
 
 </script>
 
-<style scoped></style>
+<style scoped>
+/* .aside {
+    border: 1px solid #77c3ef;
+    width: 10vw;
+    height: 100vh;
+   
+} */
+</style>
     

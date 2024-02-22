@@ -7,6 +7,11 @@
     "nightwatch.conf.*",
     "playwright.config.*"
   ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "axios"
+  ],
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
