@@ -38,7 +38,7 @@
 
         </el-header>
         <el-container>
-            <leftMenu></leftMenu>
+            <leftMenu :user="user"></leftMenu>
             <mainArea></mainArea>
         </el-container>
     </el-container>

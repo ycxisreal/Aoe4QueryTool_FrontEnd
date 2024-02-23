@@ -1,11 +1,11 @@
 <template>
     <el-main id="main">
-
+        <router-view name="mainArea"></router-view>
     </el-main>
 </template>
 <script lang='ts'></script>
 <script setup lang='ts'>
-
+import {RouterView} from "vue-router";
 </script>
 <style scoped>
 #main {
