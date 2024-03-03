@@ -3,9 +3,11 @@
         <el-header id="header">
             <div style="width: 100%; display: flex;align-items: center;">
                 <span id="d1">
-                    帝国时代4查询工具
+                    Age of Empires 4
                     <el-divider direction="vertical" />
-                    ycx
+                    <span style="font-size: medium;font-family: 仿宋,serif">
+                        查询工具 by ycx
+                    </span>
                 </span>
                 <span class="myButton1" @click="c">
                     <el-icon>
@@ -52,7 +54,7 @@
         <template #footer>
             <div>
                 <el-button @click="addUserVisible = false">取消</el-button>
-                <el-button @click="user = tempUser; addUserVisible = false; getId(user);">设置</el-button>
+                <el-button @click="addUserVisible = false; getId(tempUser);">设置</el-button>
             </div>
         </template>
     </el-dialog>
@@ -60,13 +62,18 @@
 <script setup lang='ts'>
 import mainArea from './mainArea.vue';
 import leftMenu from './leftMenu.vue';
+import {ElLoading, ElMessage} from 'element-plus'
 import { User, Plus } from '@element-plus/icons-vue';
-import { ref } from 'vue';
+import { ref,provide } from 'vue';
 import axios from 'axios';
+
 let user = ref("-");
 let tempUser = ref("");
 let addUserVisible = ref(false);
 let id = ref(-1);//玩家id
+
+provide("username",user)
+provide("id",id)
 function c() {
     console.log(111)
 }
@@ -74,22 +81,41 @@ function selectUser() {
 
 }
 async function getId(name: string) {
+    const loading = ElLoading.service({
+        lock: true,
+        text: '设置并搜索玩家id中',
+        background: 'rgba(0, 0, 0, 0.6)',
+    })
     try {
         const res = await axios.get(`http://localhost:8080/api/user/queryId/${name}`);
         id.value = res.data;
         console.log(id.value)
+        loading.close()
+        ElMessage({
+            message:`玩家设置完成，您的uid为${id.value}`,
+            type:'info',
+            offset:200
+    })
+        user.value = name
     } catch (error) {
-        console.error('id获取失败:', error);
+        loading.close()
+        ElMessage({
+            message:"无法连接至服务器,uid获取失败.",
+            type:'error',
+            offset:200
+        })
     }
 }
 </script>
 <style scoped>
 #d1 {
     margin-left: 2%;
-    margin-right: 30%;
+    margin-right: 25%;
     font-size: 2em;
-    font-weight: 800;
+    font-weight: 400;
+    font-family: 黑体,serif;
     text-align: left;
+    align-items: center;
 
 }
 
@@ -113,6 +139,8 @@ async function getId(name: string) {
 #header {
     position: sticky;
     top: 0;
+    z-index: 100;
+
     height: 10vh;
     /* background-color: #161619; */
     background: linear-gradient(to right, #4d4d4e, #161619);

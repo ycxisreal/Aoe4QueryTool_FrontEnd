@@ -13,7 +13,17 @@ export interface RankedInfo {
     elo: number;
 }
 export interface PlayerInfo {
-
+    site:string;
+    avatars: string;
+    country: string;
+}
+export interface modeInfo {
+    modeName:string;
+    elo: number;
+    winCount: number;
+    loseCount: number;
+    winRate: number;
+    rank: number;
 }
 
 export const modeNameToCommonName = (name:string) => {
@@ -109,3 +119,17 @@ export const RankLevelToChinese = (level: string) => {
             return 'invalid';
     }
 };
+export const xiaoren =(index:string) => {
+    switch (index) {
+        case '1v1':
+            return 1
+        case '2v2':
+            return 2
+        case '3v3':
+            return 3
+        case '4v4':
+            return 4
+        default:
+            return 0
+    }
+}
